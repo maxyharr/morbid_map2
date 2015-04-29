@@ -1,0 +1,135 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="morbidMap">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Morbid Map</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER  -->
+        <div class="text-center">
+            <h1> Morbid Mortality Map of the USA <span class="label label-info">{{ states.length }} states</span></h1>
+            <h4>The leading cause of death in each state (1999-2013)</h4>
+        </div>
+
+        <!-- GENDER SELECTION -->
+        <div id="gender" class="row">
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<select class="form-control">
+        			<option value="Male">Male</option>
+        			<option value="Female">Female</option>
+        		</select>
+        	</div>
+        </div>
+
+        <!-- AGE GROUP SELECTION -->
+        <div id="agegroup" class="row">
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<select class="form-control">
+        			<option value="<1 year"> &lt1 year</option>
+        		</select>
+        	</div>
+        </div>
+
+        <!-- QUERY BUTTON -->
+        <div id="refresh" class="row">
+        	<div class="col-sm-2 col-sm-offset-5">
+        		<button type="button" class="btn btn-default btn-lg" ng-click="refresh()">
+        			<span class="glyphicon glyphicon-globe"></span> Refresh
+        		</button>
+        	</div>
+        </div>
+
+        <!-- STATE LIST -->
+        <div id="state-list" class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="state in states">
+                    <label>
+                        <!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ state.name }} -->
+                        {{ state.name | uppercase }} - {{ causes_of_death[state.name].cause_of_death  }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- FORM TO CREATE TODOS -->
+<!--         <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+ -->
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+<!--                         <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+                    </div>
+ -->
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+<!--                     <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                </form>
+            </div>
+        </div> -->
+
+    </div>
+
+</body>
+</html>

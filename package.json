@@ -1,0 +1,14 @@
+{
+  "name"         : "morbid-map2",
+  "version"      : "0.0.0",
+  "description"  : "United States Map of Mortality",
+  "main"         : "server.js",
+  "author"       : "Max Harris",
+  "dependencies" : {
+    "express"    : "~4.7.2",
+    "mongoose"   : "~3.6.2",
+    "morgan"     : "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+    }
+}

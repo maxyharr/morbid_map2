@@ -1,0 +1,127 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="morbidMap">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Morbid Map</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="http://datamaps.github.io/scripts/datamaps.all.min.js"></script>
+
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER  -->
+        <div class="text-center">
+            <h1> Morbid Mortality Map of the USA <span class="label label-info">{{ states.length }} states</span></h1>
+            <h4>{{ maincause }}</h4>
+        </div>
+
+
+        <div class="row form-section">
+            <div class = "col-sm-6 col-sm-offset-3">
+                <input id="search" type="text" class="form-control" placeholder="Start searching for diseases...">
+            </div>
+        </div>
+
+
+        <!-- GENDER SELECTION -->
+        <div class="row form-section">
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<select id="gender" class="form-control">
+        			<option value="Male">Male</option>
+        			<option value="Female">Female</option>
+        		</select>
+        	</div>
+        </div>
+
+        <!-- AGE GROUP SELECTION -->
+        <div class="row form-section">
+        	<div class="col-sm-6 col-sm-offset-3">
+        		<select id="agegroup" class="form-control">
+        			<option value="<1 year">&lt1 year</option>
+                    <option value="1-4 years">1-4 years</option>
+                    <option value="5-14 years">5-14 years</option>
+                    <option value="15-24 years">15-24 years</option>
+                    <option value="25-34 years">25-34 years</option>
+                    <option value="35-44 years">35-44 years</option>
+                    <option value="45-54 years">45-54 years</option>
+                    <option value="55-64 years">55-64 years</option>
+                    <option value="65-74 years">65-74 years</option>
+                    <option value="75-84 years">75-84 years</option>
+                    <option value="84+ years">84+ years</option>
+        		</select>
+        	</div>
+        </div>
+
+        <!-- QUERY BUTTON -->
+        <div class="row form-section">
+        	<div class="col-sm-2 col-sm-offset-5">
+        		<button id="refresh" type="button" class="btn btn-default btn-lg" ng-click="refresh()">
+        			<span class="glyphicon glyphicon-globe"></span> Refresh
+        		</button>
+        	</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="map" style="position: relative; width: 1000px; height: 600px;"></div>
+            </div>
+        </div>
+
+        <!-- STATE LIST -->
+        <div id="state-list" class="row">
+            <div class="col-sm-12">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="state in states">
+                    <label>
+                        <!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ state.name }} -->
+                        {{ state.name | uppercase }} - {{ causes_of_death[state.name].cause_of_death  }} - {{ causes_of_death[state.name].gender_code }} - {{ causes_of_death[state.name].age_group }} - {{ causes_of_death[state.name].deaths | number }} deaths
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <container>
+                <p class="text-muted">Centers for Disease Control and Prevention, National Center for Health Statistics. Underlying Cause of Death 1999-2013 on CDC WONDER Online Database, released 2015. Data are from the Multiple Cause of Death Files, 1999-2013, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative Program. Accessed at http://wonder.cdc.gov/ucd-icd10.html</p>
+            </container>
+        </footer>
+
+    </div>
+
+
+    <script>
+        var map = new Datamap({
+            element: document.getElementById('map'),
+            scope: scope.loc
+        });
+        map.labels();
+    </script>
+</body>
+</html>
