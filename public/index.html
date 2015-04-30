@@ -38,6 +38,8 @@
         <div class="text-center">
             <h1> Morbid Mortality Map of the USA <span class="label label-info">{{ states.length }} states</span></h1>
             <h4>{{ maincause }}</h4>
+            <h5>State with hight DEATH COUNT: {{ max_state_deaths_name | uppercase }} @ {{ max_state_deaths | number }} deaths</h5>
+            <h5>State with highest PROPORTION of deaths: {{ max_state_proportion | uppercase }}</h5>
         </div>
 
 
@@ -99,8 +101,7 @@
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <div class="checkbox" ng-repeat="state in states">
                     <label>
-                        <!-- <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ state.name }} -->
-                        {{ state.name | uppercase }} - {{ causes_of_death[state.name].cause_of_death  }} - {{ causes_of_death[state.name].gender_code }} - {{ causes_of_death[state.name].age_group }} - {{ causes_of_death[state.name].deaths | number }} deaths
+                        {{ state.name | uppercase }} - {{ causes_of_death[state.abbreviation].cause_of_death  }} - {{ causes_of_death[state.abbreviation].gender_code }} - {{ causes_of_death[state.abbreviation].age_group }} - {{ causes_of_death[state.abbreviation].deaths | number }} deaths
                     </label>
                 </div>
 
@@ -115,13 +116,5 @@
 
     </div>
 
-
-    <script>
-        var map = new Datamap({
-            element: document.getElementById('map'),
-            scope: scope.loc
-        });
-        map.labels();
-    </script>
 </body>
 </html>
