@@ -10,7 +10,7 @@
 
     // configuration =================
 
-    mongoose.connect('mongodb://localhost/mortalitydb');
+    mongoose.connect('mongodb://mharris7190:"J)#nd0a"@ds043358.mongolab.com:43358/mortalitydb');
 
     app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
     app.use(morgan('dev'));                                         // log every request to the console
