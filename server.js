@@ -73,5 +73,6 @@
 
 
     // listen (start app with node server.js) ======================================
-    app.listen(8080);
+    //app.listen(8080);
+    app.listen(process.env.PORT);
     console.log("App listening on port 8080");
